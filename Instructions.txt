@@ -1,0 +1,12 @@
+Enter a link like: https://cerebrodatastorage.blob.core.windows.net/cerebro-cards/official/03001A.jpg
+
+1: Core 2: Green Goblin 3: Captain America 4. RoRS 5. Miss Marvel 6. Thor 7. Wrecking Crew 8. Black Widow 9. Doctor Strange 10. Hulk 11. Kang 12. Ant Man 13. Wasp 14. Quicksilver 15. Scarlet Witch 16. GMW 17. Starlord 18. Gamora 19. Drax 20. Venom 21. MTS 22. Nebula 23. War Machine 24. Hood 25. Valkyrie 26. Vision 27. Sinister Motives 28. Nova 29. Ironheart 30. Spider-ham 31. Sp//dr 32. MG 33. Cyclops 34. Phoenix 35. Mojo 36. Wolverine 36. Storm 37. Gambit 38. Rogue 40. NeXt Evolution 41. Psylocke 42. Angel 43. X-23 44. Deadpool 45. AoA 46. Iceman 47. Jubilee
+
+So, Sorcerer Supreme is in the Doctor Strange pack (9th release) and the 26th card (as seen in the database), so the code at the end of the URL is: 09026
+(The A & B in my original link are for sided heroes)
+
+So, the final URL is:
+
+https://cerebrodatastorage.blob.core.windows.net/cerebro-cards/official/09026.jpg 
+
+I scale image size to 825 pixel width and print. Get a sleeved card you have a million of (Energy/Genius/Strength) and align the printed image in the sleeve (may need some minor trimming). 

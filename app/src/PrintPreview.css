@@ -1,0 +1,90 @@
+/* Screen toolbar */
+.print-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #1a1a2e;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 2px solid #e23636;
+  color: #fff;
+}
+
+.print-toolbar button {
+  background: #e23636;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.print-toolbar span {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Card grid for printing */
+.print-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.print-card {
+  width: 63mm;   /* standard card width */
+  height: 88mm;  /* standard card height */
+  overflow: hidden;
+  box-sizing: border-box;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.print-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.print-card--missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #ccc;
+  color: #999;
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 4px;
+}
+
+/* Print styles */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 5mm;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .print-page {
+    padding: 0;
+  }
+
+  .print-card {
+    width: 63mm;
+    height: 88mm;
+  }
+}
