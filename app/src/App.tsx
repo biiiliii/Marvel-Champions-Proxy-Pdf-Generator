@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { resolveDeck } from "./deckResolver";
 import type { ResolvedDeck } from "./deckResolver";
 import { PrintPreview } from "./PrintPreview";

@@ -1,4 +1,3 @@
-import React from "react";
 import type { ResolvedDeck } from "./deckResolver";
 import { buildCardList } from "./App";
 import "./PrintPreview.css";
