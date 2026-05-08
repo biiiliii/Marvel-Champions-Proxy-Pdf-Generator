@@ -1,4 +1,8 @@
-/* Screen toolbar */
+/* ─────────────────────────────────────────────────────────────────────────────
+   PrintPreview styles — matches SHIELD Tactical HQ design
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ─── Toolbar ────────────────────────────────────────────────────────────── */
 .print-toolbar {
   position: sticky;
   top: 0;
@@ -6,44 +10,94 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: #1a1a2e;
+  background: rgba(5, 8, 15, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   padding: 0.75rem 1.5rem;
-  border-bottom: 2px solid #e23636;
-  color: #fff;
+  border-bottom: 1px solid rgba(230, 41, 63, 0.3);
 }
 
-.print-toolbar button {
-  background: #e23636;
-  color: #fff;
-  border: none;
-  padding: 0.4rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.print-toolbar span {
+.print-toolbar-title {
   flex: 1;
   text-align: center;
-  font-weight: bold;
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8090b0;
 }
 
-/* Card grid for printing */
+.print-toolbar-title strong {
+  color: #fff;
+  margin-right: 0.3em;
+}
+
+/* Reuse .btn from App.css — also define locally for print preview */
+.print-toolbar .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: none;
+  border-radius: 4px;
+  padding: 0.55rem 1.2rem;
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  min-height: 44px;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.1s;
+}
+.print-toolbar .btn:active { transform: translateY(1px) scale(0.98); }
+.print-toolbar .btn:focus-visible { outline: 2px solid #e6293f; outline-offset: 2px; }
+
+.print-toolbar .btn-back {
+  background: transparent;
+  color: #d8dff0;
+  border: 1px solid #2a3560;
+}
+.print-toolbar .btn-back:hover {
+  background: #0e1426;
+  border-color: rgba(230, 41, 63, 0.5);
+  color: #fff;
+}
+
+.print-toolbar .btn-print {
+  background: #e6293f;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(230, 41, 63, 0.35);
+}
+.print-toolbar .btn-print:hover {
+  background: #b81c2e;
+  box-shadow: 0 6px 24px rgba(230, 41, 63, 0.5);
+}
+
+/* ─── Print page (screen view) ───────────────────────────────────────────── */
 .print-page {
   display: flex;
   flex-wrap: wrap;
-  gap: 0;
-  padding: 0;
-  background: #fff;
+  background: #111827;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 20px 20px;
+  min-height: calc(100vh - 56px);
+  padding: 20px;
+  gap: 6px;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
 
 .print-card {
-  width: 63mm;   /* standard card width */
-  height: 88mm;  /* standard card height */
+  width: 63mm;
+  height: 88mm;
   overflow: hidden;
-  box-sizing: border-box;
-  break-inside: avoid;
-  page-break-inside: avoid;
+  border-radius: 4px;
+  background: #050810;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.7);
 }
 
 .print-card img {
@@ -57,34 +111,49 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px dashed #ccc;
-  color: #999;
-  font-size: 0.7rem;
+  border: 1px dashed #2a3560;
+  border-radius: 4px;
+  color: #3a4060;
+  font-size: 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
   text-align: center;
   padding: 4px;
+  background: #0a0f1e;
 }
 
-/* Print styles */
+/* ─── Print media ────────────────────────────────────────────────────────── */
 @media print {
   @page {
     size: A4 portrait;
     margin: 5mm;
   }
 
-  .no-print {
-    display: none !important;
-  }
+  .no-print { display: none !important; }
 
   body {
-    background: #fff;
+    background: #fff !important;
+    background-image: none !important;
   }
 
   .print-page {
+    background: #fff;
     padding: 0;
+    gap: 0;
+    justify-content: flex-start;
+    min-height: auto;
   }
 
   .print-card {
     width: 63mm;
     height: 88mm;
+    border-radius: 0;
+    box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .print-toolbar .btn { transition: none; }
 }

@@ -13,11 +13,13 @@ export function PrintPreview({ resolved, onBack }: Props) {
   return (
     <div className="print-preview">
       <div className="print-toolbar no-print">
-        <button onClick={onBack}>← Back to editor</button>
-        <span>
-          {resolved.title} — {cards.length} card(s)
-        </span>
-        <button onClick={() => window.print()}>🖨 Print / Save PDF</button>
+        <button className="btn btn-back" onClick={onBack}>← Back</button>
+        <div className="print-toolbar-title">
+          <strong>{resolved.title}</strong> — {cards.length} cards
+        </div>
+        <button className="btn btn-print" onClick={() => window.print()}>
+          🖨 Print / Save PDF
+        </button>
       </div>
 
       <div className="print-page">

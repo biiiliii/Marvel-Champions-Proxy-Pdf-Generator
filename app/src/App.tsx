@@ -73,40 +73,57 @@ export default function App() {
     <div className="app">
       {!showPreview && (
         <div className="editor-pane">
-          <h1>Marvel Champions Proxy Printer</h1>
-          <p className="hint">
-            Paste your deck list below. Format: <code>Nx Card Name (Set Name)</code>
-          </p>
-          <textarea
-            className="deck-input"
-            value={deckText}
-            onChange={(e) => setDeckText(e.target.value)}
-            spellCheck={false}
-            rows={30}
-          />
-          <div className="actions">
-            <button onClick={handleResolve} disabled={loading}>
-              {loading ? "Loading…" : "Load Deck"}
-            </button>
-            {resolved && (
-              <button className="print-btn" onClick={handlePrint}>
-                🖨 Print / Save PDF
-              </button>
-            )}
-          </div>
-
-          {resolved && resolved.errors.length > 0 && (
-            <div className="errors">
-              <strong>Warnings:</strong>
-              <ul>
-                {resolved.errors.map((e, i) => (
-                  <li key={i}>{e}</li>
-                ))}
-              </ul>
+          <header className="app-header">
+            <div className="app-header-icon">🃏</div>
+            <div>
+              <h1><span>Marvel Champions</span> Proxy Printer</h1>
+              <p>Generate printable proxy cards from your deck list</p>
             </div>
-          )}
+          </header>
 
-          {resolved && <CardGrid resolved={resolved} />}
+          <div className="editor-layout">
+            <div className="input-panel">
+              <span className="panel-label">Deck list</span>
+              <p className="hint">
+                Paste your deck below or{" "}
+                <a href="https://marvelcdb.com/decklists" target="_blank" rel="noreferrer">
+                  export from MarvelCDB
+                </a>{" "}
+                using <em>Download Text File</em>. Format:{" "}
+                <code>Nx Card Name (Set Name)</code>
+              </p>
+              <textarea
+                className="deck-input"
+                value={deckText}
+                onChange={(e) => setDeckText(e.target.value)}
+                spellCheck={false}
+                rows={24}
+              />
+              <div className="actions">
+                <button className="btn btn-primary" onClick={handleResolve} disabled={loading}>
+                  {loading ? "⏳ Loading…" : "▶ Load Deck"}
+                </button>
+                {resolved && (
+                  <button className="btn btn-secondary" onClick={handlePrint}>
+                    🖨 Print / Save PDF
+                  </button>
+                )}
+              </div>
+
+              {resolved && resolved.errors.length > 0 && (
+                <div className="warnings">
+                  <div className="warnings-title">⚠ Warnings</div>
+                  <ul>
+                    {resolved.errors.map((e, i) => (
+                      <li key={i}>{e}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {resolved && <CardGrid resolved={resolved} />}
+          </div>
         </div>
       )}
 
@@ -122,9 +139,10 @@ function CardGrid({ resolved }: { resolved: ResolvedDeck }) {
 
   return (
     <div className="card-grid-preview">
-      <h2>
-        {resolved.title} — {allCards.length} card(s)
-      </h2>
+      <div className="grid-header">
+        <h2>{resolved.title}</h2>
+        <span className="count-badge">{allCards.length} cards</span>
+      </div>
       <div className="card-grid">
         {allCards.map((c, i) => (
           <div key={i} className="card-thumb">
